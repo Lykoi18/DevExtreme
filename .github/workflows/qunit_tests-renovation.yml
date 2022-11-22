@@ -1,5 +1,4 @@
 name: QUnit tests for renovation
-description: qqq
 
 on:
   pull_request:
