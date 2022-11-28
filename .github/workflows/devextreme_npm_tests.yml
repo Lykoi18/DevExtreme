@@ -38,6 +38,9 @@ jobs:
     - name: Install packages in devextreme repo
       run: test -d artifacts || npm install --no-audit --no-fund
 
+    - name: Build devextreme repo
+      run: test -d artifacts || npm run build-npm-devextreme
+
     - name: Pack devextreme package
       working-directory: ./artifacts/npm/devextreme
       run: npm pack
