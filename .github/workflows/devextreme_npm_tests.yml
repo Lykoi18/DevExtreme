@@ -38,6 +38,17 @@ jobs:
     - name: Install packages in devextreme repo
       run: test -d artifacts || npm install --no-audit --no-fund
 
+    - name: Pack devextreme package
+      working-directory: ./artifacts/npm/devextreme
+      run: npm pack
+
+    - name: Copy build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: devextreme-npm
+        path: ./artifacts/npm/devextreme/devextreme-*.tgz
+        retention-days: 1
+
   test_angular:
     name: Angular wrapper tests
     needs: build
