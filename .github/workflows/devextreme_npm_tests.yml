@@ -80,26 +80,26 @@ jobs:
     - name: Clone devextreme-angular repo from PR author fork
       continue-on-error: true
       if: github.event_name == 'pull_request'
-      run: git clone -b ${{github.event.pull_request.head.ref}} https://github.com/${{github.event.pull_request.user.login}}/devextreme-angular ./devextreme-angular-repo
+      run: git clone -b ${{github.event.pull_request.head.ref}} https://github.com/${{github.event.pull_request.user.login}}/devextreme-angular ../devextreme-angular-repo
 
     - name: Clone devextreme-angular repo
       run: |
-        test -d ./devextreme-angular-repo || git clone -b 21.2 https://github.com/devexpress/devextreme-angular ./devextreme-angular-repo
+        test -d ../devextreme-angular-repo || git clone -b 21.2 https://github.com/devexpress/devextreme-angular ../devextreme-angular-repo
 
     - name: Download artifacts
       uses: actions/download-artifact@v2
       with:
         name: devextreme-npm
-        path: ./devextreme-angular-repo/packages/devextreme-angular
+        path: ../devextreme-angular-repo/packages/devextreme-angular
 
     - name: Install devextreme package
-      working-directory: ./devextreme-angular-repo/packages/devextreme-angular
+      working-directory: ../devextreme-angular-repo/packages/devextreme-angular
       run: npm install --save-dev $(ls *.tgz)
 
     - name: Install packages for devextreme-angular
-      working-directory: ./devextreme-angular-repo
+      working-directory: ../devextreme-angular-repo
       run: npm install --no-audit --no-fund
 
     - name: Update angular metadata
       run: |
-        npm run internal-tool -- update-meta --output-path ./devextreme-angular-repo/packages/devextreme-angular/metadata/NGMetaData.json --version 21_2 --js-scripts ./js --exclude js/renovation/
+        npm run internal-tool -- update-meta --output-path ../devextreme-angular-repo/packages/devextreme-angular/metadata/NGMetaData.json --version 21_2 --js-scripts ./js --exclude js/renovation/
