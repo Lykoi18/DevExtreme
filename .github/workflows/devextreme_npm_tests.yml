@@ -101,5 +101,6 @@ jobs:
       run: npm install --no-audit --no-fund
 
     - name: Update angular metadata
+      working-directory: ../devextreme-angular-repo
       run: |
-        npm run internal-tool -- update-meta --output-path ../devextreme-angular-repo/packages/devextreme-angular/metadata/NGMetaData.json --version 21_2 --js-scripts ./js --exclude js/renovation/
+        npm run internal-tool -- update-meta --output-path ./packages/devextreme-angular/metadata/NGMetaData.json --version 21_2 --js-scripts ../DevExtreme/js --exclude js/renovation/
