@@ -76,7 +76,7 @@ function run_test {
     case "$BROWSER" in
 
         "firefox")
-            local profile_path="/firefox-profile" 
+            local profile_path="/firefox-profile"
             [ "$GITHUBACTION" == "true" ] && profile_path="/tmp/firefox-profile"
             local firefox_args="-profile $profile_path $url"
             [ "$NO_HEADLESS" != "true" ] && firefox_args="-headless $firefox_args"
@@ -177,7 +177,7 @@ function start_runner_watchdog {
     local last_suite_time=unknown
 
     while true; do
-        sleep 300
+        sleep 5000
 
         if [ ! -f $last_suite_time_file ] || [ $(cat $last_suite_time_file) == $last_suite_time ]; then
             echo "Runner stalled"
